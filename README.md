@@ -1,9 +1,15 @@
 <img width="1024" height="267" alt="logo" src="https://github.com/user-attachments/assets/a5ef7417-49cd-4f5f-96cf-74fd51c89e16" />
 
-# AvalancheSiteSource
+# Avalanche Site Source Code
 This Repo contains the alanbloxxr.xyz Site Source code, Google has flagged our site as "Not secure" and people have been claiming it as a Key logger. I have open sourced this to prove people that it is not. a key logger.
 
 # Currently want to implement:
+- [ ] GameScripts and Joining
+- [ ] Rendering
+- [x] 2FA (this was a pain in the ass and decided to risk it.)
+- [ ] Forgot Password (half done but still check marking it)
+- [ ] Create Page (done a quarter of it but its EXTREMELY buggy)
+
 
 # WARNING!
 This source is buggy and i do not recommend it for revivals, But can be implemented/fixed even further
@@ -36,8 +42,48 @@ Run this command:
 ```
 mysql -u yourusername -p
 ```
-Enter your username and password like this: (type your actual MySQL username after -u and press Enter when prompted for the password) Inside the MySQL prompt, type: CREATE DATABASE yourdatabasename; Then type: EXIT; To import the SQL file:
-Run this command:
+Enter your username and password like this: (type your actual MySQL username after -u and press Enter when prompted for the password) Inside the MySQL prompt, type: 
+```
+CREATE DATABASE avalanche;
+```
+Then type: EXIT. To import the SQL file, Run this command:
 ```
 mysql -u yourusername -p yourdatabasename < path/to/yoursqlfile.sql
 ```
+Enter your username and password like this: (replace yourusername, yourdatabasename, and the file path with your actual details)
+**NOTE THAT THIS METHOD IS FOR LARGE FILES BUT CAN ALSO BE DONE WITH SMALLER FILES! IF YOU WANT SOMETHING EASIER FOLLOW THE PHPMYADMIN GUIDE ON THE BOTTOM OF THIS**
+
+For **phpMyAdmin:** Keep your danm webserver on! Go to your browser and search for "localhost/phpmyadmin", Login with your username (default is root and theres not password, but i **ADVISE** you to get a password for your webserver.) Create a Database called "avalanche" And then go to the sidebar and press "avalanche" Then on the middle page, go to the topbar that says "Import", Drag and drop or press on the "Import" button or "Select File" (i dont really know man) and go to the "www" or "htdocs" Folder and find "avalanche.sql", Select that, go down and press import.
+
+For **PostgreSQL:** Open your terminal or command prompt, To create the target database (if it doesn’t exist yet): Run this command:
+```
+psql -U yourusername -d avalanche
+```
+Enter your username and password like this: (type your actual PostgreSQL username after -U and press Enter when prompted for the password) Inside the psql prompt, type:
+```
+CREATE DATABASE avalanche;
+```
+Then type: "\q" To import the SQL file: Run this command:
+```
+psql -U yourusername -d avalanche < path/to/yoursqlfile.sql
+```
+Enter your username and password like this: (replace yourusername, and the file path with your actual details) 
+**AGAIN, THIS IS FOR LARGE FILES, FOR SOMETHING EASIER, DO THE PHPMYADMIN GUIDE ON THE TOP OF THIS GUIDE.**
+
+For **HeidiSQL:** this ones my favourtie sql!!! Open HeidiSQL. Create or open your connection to the database server and log in with your credentials. If the target database doesn’t exist yet: Right-click on Databases in the left panel, choose Create new, enter the name, and confirm. Select (click) the target database in the left panel to activate it. Go to the top menu and click File > Load SQL file (or Run SQL file in some versions). Browse to your .sql file, select it, and click Open.
+If a prompt appears, choose Run file directly (recommended for most imports) or Load into editor, then click the Execute button (play/lightning icon) or press F9.
+
+# Step 4 (my fingers are BLEEDING)
+Go to the "www" or "htdocs" Folder of your webserver, Go to "config.php" And find this line:
+```
+$db_host = 'localhost';
+$db_name = 'avalanche';
+$db_user = 'root_or_your_webserver_username';
+$db_pass = 'no_password_or_your_webserver_password';
+```
+Replace your username and your password (default is no password but LIKE I SAID, YOU NEED A PASSWORD!!!!), After that, press Ctrl+S (Windows) or Cmd+S (macOS) to Save.
+
+# Step 5
+Start your webserver, Start Apache, MySQL or whatever one. Signup to a Account, and there you go! 
+
+# Have Fun!
