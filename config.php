@@ -1,27 +1,23 @@
 <?php
 
-if (http_response_code() === 404 || $_SERVER['REDIRECT_STATUS'] === '404') {
+// Fixed 404 check - safe for both localhost and production
+if (http_response_code() === 404 || 
+    (isset($_SERVER['REDIRECT_STATUS']) && $_SERVER['REDIRECT_STATUS'] === '404')) {
     include '404.php';
     exit;
 }
-    
-
-
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-
 define('SITE_NAME', 'Avalanche');
 define('ASSETS_URL', '/assets/');
 
-
-$db_host = 'host_here';
-$db_name = 'name_here';
+$db_host = 'localhost';
+$db_name = 'avalanche';
 $db_user = 'user_here';
 $db_pass = 'password_here';
-
 
 try {
     $db = new PDO(
@@ -38,11 +34,9 @@ try {
     die("Database connection failed: " . $e->getMessage());
 }
 
-
 function isLoggedIn() {
     return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
 }
-
 
 function currentUser() {
     global $db;
@@ -73,15 +67,12 @@ function isBanned() {
     $user = currentUser();
     if (!$user) return false;
     
-   
     if (empty($user['is_banned'])) return false;
-    
     
     if ($user['ban_expires'] && strtotime($user['ban_expires']) < time()) {
         return false; // ban expired 
     }
     
-  
     if (!empty($user['unbanned_by'])) {
         return false; // was unbanned
     }
@@ -89,7 +80,6 @@ function isBanned() {
     return true; 
 }
 
-r
 function isAdmin() {
     if (!isLoggedIn()) return false;
     
@@ -98,7 +88,6 @@ function isAdmin() {
     
     return in_array($_SESSION['user_id'], $owner_ids) || in_array($_SESSION['user_id'], $admin_ids);
 }
-
 
 function requireNotBanned() {
     if (!isLoggedIn()) {
@@ -112,12 +101,10 @@ function requireNotBanned() {
     }
 }
 
-
 function h($string) {
     return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 }
 
-n
 function requireLogin() {
     if (!isLoggedIn()) {
         header("Location: login.php");
