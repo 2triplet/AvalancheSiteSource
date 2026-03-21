@@ -7,8 +7,24 @@ This Repo contains the alanbloxxr.xyz Site Source code, Google has flagged our s
 This source is buggy and i do not recommend it for revivals, But can be implemented/fixed even further
 
 # How to use 
-Download the file by pressing the green button "Code" and press "Download ZIP" Once its finished, Extract the file using whatever file extracter you want, Now download a webserver (not an actual one a localhost one) Such as XAMPP, Laragon, WAMP, or any other one you prefer, I'll leave some links here:
+Download the source code by pressing the green button "Code" and press "Download ZIP" Once its finished, Extract the file using whatever file extracter you want, Now download a webserver (not an actual one a localhost one) Such as XAMPP, Laragon, WAMP, or any other one you prefer, I'll leave some links here:
 
 [XAMPP](https://www.apachefriends.org/download.html)
 [Laragon](https://laragon.org/download)
 [WAMP](https://wampserver.aviatechno.net/)
+[UwAmp](https://www.uwamp.com/en/?page=download) 
+(for UwAmp i'd rather recommend installing either the .RAR file or .ZIP)
+
+# Step 2
+Get the extracted source code and put it in these folders depending on your webserver:
+
+For UwAmp: Go to your extracted UwAmp client, Go to the folder "www" And delete everything there, Then put the source code into that folder.
+
+For XAMPP: On the XAMPP Control panel, Press on "Explorer" on the right side bar, Then find the folder "htdocs" and delete everything there, Then put the source code into that folder.
+
+For WAMP: Locate the WampServer www directory: Open File Explorer (Windows Explorer) and navigate to the drive where WampServer is installed (usually C:). Find the WampServer installation folder, typically named wamp or wamp64. Inside that folder, locate the www directory (e.g., C:\wamp64\www). Delete any file from there and its Best to create a Folder INSIDE the "www" directory (its optional but HIGHLY recommended) Then copy the source code into that folder.
+
+For Laragon: In the laragon Ui, Click the "Root" Button on the bottom, You will be instantly directed to the "www" folder. Delete any file from there, Then put the source code into that folder.
+
+
+
