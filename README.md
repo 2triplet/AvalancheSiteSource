@@ -36,3 +36,8 @@ Run this command:
 ```
 mysql -u yourusername -p
 ```
+Enter your username and password like this: (type your actual MySQL username after -u and press Enter when prompted for the password) Inside the MySQL prompt, type: CREATE DATABASE yourdatabasename; Then type: EXIT; To import the SQL file:
+Run this command:
+```
+mysql -u yourusername -p yourdatabasename < path/to/yoursqlfile.sql
+```
